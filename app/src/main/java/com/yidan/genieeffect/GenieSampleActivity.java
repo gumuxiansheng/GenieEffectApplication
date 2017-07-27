@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.dataseed.genieeffectlibrary.AnimSurface;
+import com.dataseed.genieeffectlibrary.AnimSurfaceUtil;
 
 public class GenieSampleActivity extends Activity {
 
@@ -37,21 +38,8 @@ public class GenieSampleActivity extends Activity {
                     mAnimSurface = new AnimSurface(GenieSampleActivity.this);
                     mAnimSurface.setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
                 }
-                if (!mAnimSurface.isShown()) {
-                    ((ViewGroup) getWindow().getDecorView().findViewById(android.R.id.content)).addView(mAnimSurface);
-                }
-
-                final int[] endPosition = new int[2];
-                image.getLocationOnScreen(endPosition);
-                mAnimSurface.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAnimSurface.setIsDebug(true);
-                        if (mAnimSurface.startAnimation(image, endPosition[0] + image.getWidth() + 50, endPosition[1] + image.getHeight() / 2, mReverse)) {
-                            mReverse = !mReverse;
-                        }
-                    }
-                });
+                AnimSurfaceUtil.startAnimation(GenieSampleActivity.this, mAnimSurface, image, mReverse);
+                mReverse = !mReverse;
 
             }
         });
