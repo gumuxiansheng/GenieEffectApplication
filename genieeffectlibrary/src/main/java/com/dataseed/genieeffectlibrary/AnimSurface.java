@@ -161,6 +161,7 @@ public class AnimSurface extends View {
             @Override
             public void onAnimationStart(Animator animation) {
                 if (originView != null) {
+                    originView.setVisibility(VISIBLE);
                     originView.setVisibility(INVISIBLE);
                 }
 

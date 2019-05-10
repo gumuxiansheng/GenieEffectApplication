@@ -71,6 +71,7 @@ public class GenieMesh extends Mesh {
             case INHALE_DIRECT_LEFT:
                 break;
             case INHALE_DIRECT_TOP:
+                buildTopPath(xScale);
                 break;
             case INHALE_DIRECT_RIGHT:
                 buildBottomRight(xScale);
@@ -81,6 +82,30 @@ public class GenieMesh extends Mesh {
         }
 
 
+    }
+
+    private void buildTopPath(float xScale) {
+        float w = mBmpWidth;
+        float h = mBmpHeight;
+
+        mFirstPath.moveTo(mStartX, mStartY + h);
+        mSecondPath.moveTo(mStartX + w, mStartY + h);
+
+        mFirstPathTemp.moveTo(mStartX, mStartY + h);
+        mSecondPathTemp.moveTo(mStartX + w, mStartY + h);
+
+        mScale = xScale;
+
+        mFirstPath.cubicTo(mStartX, mStartY + h * 2 / 3, (mEndX - mStartX) * xScale + mStartX, mStartY + h * 2 / 3, (mEndX - mStartX) * xScale + mStartX, mStartY - (mStartY - mEndY) * xScale);
+        mSecondPath.cubicTo(mStartX + w, mStartY + h * 2 / 3, mStartX + w - (mStartX + w - mEndX) * xScale, mStartY + h * 2 / 3, mStartX + w - (mStartX + w - mEndX) * xScale, mStartY - (mStartY - mEndY) * xScale);
+
+        mFirstPathTemp.cubicTo(mStartX, mStartY + h * 2 / 3, (mEndX - mStartX) * xScale + mStartX, mStartY + h * 2 / 3, (mEndX - mStartX) * xScale + mStartX, mStartY - (mStartY - mEndY) * xScale);
+        mSecondPathTemp.cubicTo(mStartX + w, mStartY + h * 2 / 3, mStartX + w - (mStartX + w - mEndX) * xScale, mStartY + h * 2 / 3, mStartX + w - (mStartX + w - mEndX) * xScale, mStartY - (mStartY - mEndY) * xScale);
+
+        if (xScale < 1) {
+            mFirstPath.lineTo(mEndX, mStartY - (mStartY - mEndY) * xScale);
+            mSecondPath.lineTo(mEndX, mStartY - (mStartY - mEndY) * xScale);
+        }
     }
 
     private void buildBottomPath(float xScale) {
@@ -185,6 +210,38 @@ public class GenieMesh extends Mesh {
         for (int y = 0; y <= mVerticalSplit; y++) {
             mFirstPathMeasure.getPosTan(y * len1 + firstPointDist, pos1, null);
             mSecondPathMeasure.getPosTan(y * len2 + secondPointDist, pos2, null);
+            /*
+             *        ...
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *   |x------x------x------x------x|
+             *        ...
+             *
+             *   to:
+             *                   ...
+             *                 |xxxxx|
+             *               |x-x-x-x-x|
+             *              |x--x--x--x--x|
+             *             | |  |  |  |  | |
+             *            |x---x---x---x---x|
+             *          |  |   |   |   |   | |
+             *         |x----x----x----x----x|
+             *         ||    |    |    |    | |
+             *        ||     |     |     |     ||
+             *        |x-----x-----x-----x-----x|
+             *       | |     |     |     |     ||
+             *     | |      |     |     |      ||
+             *    ||      |      |      |      ||
+             *    |x------x------x------x------x|
+             *                   ...
+             *
+             *
+             *
+             */
 
             float fx1 = pos1[0];
             float fx2 = pos2[0];
@@ -205,7 +262,8 @@ public class GenieMesh extends Mesh {
 //                        mVertices[((index % (mHorizontalSplit + 1)) * (mHorizontalSplit + 1) + mHorizontalSplit - (int) (index / (mVerticalSplit + 1))) * 2 + 1] = fy + fy1;
                         break;
                     case INHALE_DIRECT_TOP:
-                        // TODO:
+                        mVertices[((mVerticalSplit + 1) * (mHorizontalSplit + 1) - index - 1) * 2 + 0] = fx2 - fx;
+                        mVertices[((mVerticalSplit + 1) * (mHorizontalSplit + 1) - index - 1) * 2 + 1] = fy + fy1;
                         break;
                     case INHALE_DIRECT_RIGHT:
                         mVertices[((mHorizontalSplit - index % (mHorizontalSplit + 1)) * (mHorizontalSplit + 1) + (int) (index / (mVerticalSplit + 1))) * 2 + 0] = fx + fx1;

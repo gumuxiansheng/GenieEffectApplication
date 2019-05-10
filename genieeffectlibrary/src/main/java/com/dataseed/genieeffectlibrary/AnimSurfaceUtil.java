@@ -20,7 +20,9 @@ public class AnimSurfaceUtil {
             @Override
             public void run() {
                 animSurface.setIsDebug(true);
-                if (animSurface.startAnimation(animView, endPosition[0] + animView.getWidth() + 50, endPosition[1] + animView.getHeight() / 2, reverse)) {
+//                if (animSurface.startAnimation(animView, endPosition[0] + animView.getWidth() + 50, endPosition[1] + animView.getHeight() / 2, reverse)) {
+//                }
+                if (animSurface.startAnimation(animView, endPosition[0] + animView.getWidth() - 50, endPosition[1] - animView.getHeight(), reverse)) {
                 }
             }
         });
