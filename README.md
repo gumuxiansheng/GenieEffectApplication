@@ -9,7 +9,7 @@ Currently support animation to right/bottom/top sides. Left side is remained to 
 The main thoughts are like below:
 
 The final path:
-![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate1?raw=true)
+![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate1.png?raw=true)
 
 The path on half way:
-![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate2?raw=true)
+![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate2.png?raw=true)
