@@ -131,6 +131,10 @@ public class AnimSurface extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int currentIndex = (int) ((0 + HEIGHT_POINTS + 1) * (reverse ? 1 - (float) animation.getAnimatedValue() : (float) animation.getAnimatedValue()));
+                if (reverse) {
+                    // if it is reverse animation, we should build animation path first.
+                    mGenieMesh.buildAnimPaths(1);
+                }
                 mGenieMesh.buildMeshes(currentIndex);
                 invalidate();
             }
