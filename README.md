@@ -5,7 +5,7 @@ Currently support animation to right/bottom/top sides. Left side is remained to 
 
 ![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/genie_effect.gif?raw=true)
 
-## Use
+## Usage
 
 The sample app shows the way to use this genie effect library.
 ```java
