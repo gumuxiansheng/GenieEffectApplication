@@ -23,7 +23,9 @@ mReverse = !mReverse;
 The main thoughts are like below:
 
 The final path:
-![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate1.png?raw=true)
+
+![pathIllustrate1](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate1.png?raw=true)
 
 The path on half way:
-![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate2.png?raw=true)
+
+![pathIllustrate2](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/pathIllustrate2.png?raw=true)
