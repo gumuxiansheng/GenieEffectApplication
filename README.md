@@ -9,18 +9,22 @@ Currently support animation to right/bottom/top sides. Left side is remained to 
 
 The sample app shows the way to use this genie effect library.
 ```java
-private AnimSurface mAnimSurface;
+private AnimSurface mAnimSurface; // declare the surface to show the animation, usually capture all the screen.
 if (mAnimSurface == null) {
     mAnimSurface = new AnimSurface(GenieSampleActivity.this);
     mAnimSurface.setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
 }
-AnimSurfaceUtil.startAnimation(GenieSampleActivity.this, mAnimSurface, image, mReverse);
+// By passing the view to be animated to the util's function to start the animation on AnimSurface.
+AnimSurfaceUtil.startAnimation(GenieSampleActivity.this, mAnimSurface, image, mReverse); // image is the view to be animated.
 mReverse = !mReverse;
 ```
+where image is the view to be animated.
 
 ## Thoughts
 
-The main thoughts are like below:
+The path in animation is very important here, the key in this lib is to calculate the right shape at time T then apply it with mesh.
+
+The illustration is like below:
 
 The final path:
 
