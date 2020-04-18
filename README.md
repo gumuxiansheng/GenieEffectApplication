@@ -4,6 +4,7 @@ Genie effect Android lib
 Currently support animation to right/bottom/top sides. Left side is remained to be done.
 
 ![image](https://github.com/gumuxiansheng/GenieEffectApplication/blob/master/genie_effect.gif?raw=true)
+*图片来源：Dean, J., & Ghemawat, S. (2008). MapReduce: Simplified data processing on large clusters. Communications of the ACM, 51(1), 107–113. https://doi.org/10.1145/1327452.1327492*
 
 ## Usage
 
